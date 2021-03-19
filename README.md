@@ -1,4 +1,4 @@
-# PiNAS
+# PiNAS π💾 🍆🍓
 
 All-in-one Raspberry Pi Media box handling torrents, game streaming, media and storage. VESA mounted on the back of the Telly with external HDD.
 
@@ -29,7 +29,7 @@ RPi 4 with 2TB USB3 HDD, this was cheaper than SSD but cannot use two HDDs at on
 
 Case is based on [this excellent case](https://www.thingiverse.com/thing:3723481) with accompanying 40 mm fan and heatsink, expanded to house the HDD and fit 200 mm VESA screw holes. The STEP, STL and 3mf for PrusaSlicer files are found in `cad` folder. Printed with 3 perimeters, no top or bottom layers and with hexagonal infill. I connected used 3.3 V rather than to reduce noise.
 
-<img src="https://your-image-url.type" width="100" height="100"><img src="https://your-image-url.type" width="100" height="100">
+<img src="https://raw.githubusercontent.com/Jimbles/PiNAS/main/images/Vesa_Case_SW.png" width=50% height=50%><img src="https://raw.githubusercontent.com/Jimbles/PiNAS/main/images/Vesa_Case_PS.png" width=29% height=29%>
 
 ### Shutdown and game stream buttons
 
