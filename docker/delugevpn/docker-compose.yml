@@ -1,0 +1,22 @@
+version: '3.5'
+services:
+ delugevpn:
+  env_file:
+    - DockerEnv
+  image: delugevpn
+  #build: .
+  cap_add:
+    - NET_ADMIN
+  devices:
+    - /dev/net/tun
+  restart: always
+  ports:
+    - "8112:8112"
+    - "58846:58846"
+  dns:
+    - 8.8.8.8
+    - 8.8.4.4
+  volumes:
+    - /etc/localtime:/etc/localtime:ro
+    - /home/pi/docker/deluge:/config
+    - /mnt/media/downloads:/downloads
