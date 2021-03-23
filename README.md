@@ -35,13 +35,13 @@ Case is based on [this excellent case](https://www.thingiverse.com/thing:3723481
 
 Two push buttons and an indicator LED was added to easily shutdown the Pi and also to start Moonlight streaming. Add the following line to `rc.local` before the line `exit 0` to run at startup.
 
-` sudo /usr/bin/python3 /home/pi/PiNAS/code/moonlight_shutdown.py &`
+`sudo /usr/bin/python3 /home/pi/PiNAS/code/moonlight_shutdown.py &`
 
 Currently the Moonlight-qt button does not start properly, so it uses moonlight embedded
 
 ## Software Setup
 
-The are many steps to this! I have included the ones I can remember and what guides I used to help me. 
+The are many steps to this! I have included the ones I can remember and what guides I used to help me.
 
 ### Networking and security
 
@@ -64,6 +64,7 @@ The are many steps to this! I have included the ones I can remember and what gui
 ### Torrents
 
 - NordVPN - needed to use the service credentials user and pass as mentioned [here](https://support.nordvpn.com/Connectivity/Linux/1047409422/How-can-I-connect-to-NordVPN-using-Linux-Terminal.htm)
+- Use backport for docker related package to fix Radarr, Plex and NGinx [here](https://docs.linuxserver.io/faq#my-host-is-incompatible-with-images-based-on-ubuntu-focal)
 - [Docker-Deluge](https://github.com/Jimbles/docker-deluge-openvpn) Runs Deluge in a container with VPN, ensures all torrent traffic goes through VPN. Possible that docker continuously cannot find a config file for the server, in which case you should rebuild the container, or copy across new configs.
   - Web access through port `8112`.
   - Change password and set move completed downloads to `completed` folder.
@@ -81,7 +82,7 @@ Current only backup music folder. I dont expose the port externally instead use 
 
 ### Music Streaming or Google Music Replacement
 
-- Used Airsonic behind NGinx server following [this great guide](https://youtu.be/bozkNMUfqKM) 
+- Used Airsonic behind NGinx server following [this great guide](https://youtu.be/bozkNMUfqKM)
 - I used [duckDNS](https://www.duckdns.org/) for the DNS
 - Opened Ports on Router
 

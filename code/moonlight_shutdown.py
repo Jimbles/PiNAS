@@ -27,6 +27,20 @@ def moonlight():
     system("QT_QPA_EGLFS_ALWAYS_SET_MODE=1 moonlight-qt &") # this way it run in background
     print("Done")
 
+def moonlight_embedded():
+    print('Starting Moonlight embedded')
+    print('Killing running moonlight embedded processes')
+    try:        
+        check_call(['killall', 'moonlight']) # this will error if none running so will avoid sleep below
+        #os.system("killall moonlight-qt")
+        sleep(2) # wait a bit for it to close propery (not sure if needed)
+    except:
+        print('Moonlight not running')
+
+    system("moonlight stream -1080 -bitrate 50000 -remote -quitappafter -app steam &") # this way it run in background
+    print("Done")
+
+
 def shutdown():
     print("Shutting Down")
     led.on() #led will turn off after shutdown so know its happened
@@ -35,7 +49,7 @@ def shutdown():
     #system('shutdown now -h')
 
 moonlight_btn = Button(14, hold_time=2)
-moonlight_btn.when_held = moonlight
+moonlight_btn.when_held = moonlight_embedded
 
 shutdown_btn = Button(15, hold_time=2)
 shutdown_btn.when_held = shutdown
