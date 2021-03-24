@@ -12,8 +12,6 @@ from signal import pause
 from time import sleep
 from os import system 
 
-led = LED(18)
-
 def moonlight():
     print('Starting Moonlight')
     print('Killing running moonlight-qt processes...')
@@ -41,19 +39,9 @@ def moonlight_embedded():
     print("Done")
 
 
-def shutdown():
-    print("Shutting Down")
-    led.on() #led will turn off after shutdown so know its happened
-    sleep(1)
-    check_call(['sudo', 'poweroff'])
-    #system('shutdown now -h')
-
 moonlight_btn = Button(14, hold_time=2)
 moonlight_btn.when_held = moonlight_embedded
 
-shutdown_btn = Button(15, hold_time=2)
-shutdown_btn.when_held = shutdown
-
-print("Starting Button Listener")
+print("Starting Moonlight Button Listener")
 pause()
 
