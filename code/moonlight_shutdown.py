@@ -37,7 +37,7 @@ def moonlight_embedded():
     except:
         print('Moonlight not running')
 
-    system("moonlight stream -1080 -bitrate 50000 -remote -quitappafter -app steam &") # this way it run in background
+    system("moonlight stream -1080 -bitrate 50000 -remote -quitappafter -app Steam &") # this way it run in background
     print("Done")
 
 

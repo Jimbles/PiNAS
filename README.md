@@ -35,9 +35,9 @@ Case is based on [this excellent case](https://www.thingiverse.com/thing:3723481
 
 Two push buttons and an indicator LED was added to easily shutdown the Pi and also to start Moonlight streaming. Add the following line to `rc.local` before the line `exit 0` to run at startup.
 
-`sudo /usr/bin/python3 /home/pi/PiNAS/code/moonlight_shutdown.py &`
+`sudo /usr/bin/python3 /home/pi/PiNAS/code/shutdown.py &`
 
-Currently the Moonlight-qt button does not start properly, so it uses moonlight embedded
+Currently the Moonlight-qt button does not start properly, so it uses moonlight embedded. This requires using systemd to get GUI working and to run as pi user
 
 ## Software Setup
 
@@ -89,7 +89,7 @@ Current only backup music folder. I dont expose the port externally instead use 
 ### Video Game Streaming
 
 - Moonlight-qt [install guide](https://github.com/moonlight-stream/moonlight-docs/wiki/Installing-Moonlight-Qt-on-Raspberry-Pi-4). I like this better than moonlight embedded as it allows multiple apps to open like steam/retroarch and changing stream settings in app. Remember to increase GPU memory
-- Moonlight embedded [repo](https://github.com/irtimmer/moonlight-embedded) [guide](https://www.howtogeek.com/220969/turn-a-raspberry-pi-into-a-steam-machine-with-moonlight/). Command is `moonlight stream -1080 -bitrate 50000 -remote -quitappafter -app steam` It defaults to steam, but can swap to `-app retroarch` etc. working with steam, retroarch, psnow and pcsx2
+- Moonlight embedded [repo](https://github.com/irtimmer/moonlight-embedded) [guide](https://www.howtogeek.com/220969/turn-a-raspberry-pi-into-a-steam-machine-with-moonlight/). Command is `moonlight stream -1080 -bitrate 50000 -remote -quitappafter -app Steam` It defaults to steam, but can swap to `-app retroarch` etc. working with steam, retroarch, psnow and pcsx2
 - Steam Link - I found moonlight better but useful for checking network and controllers
 
 #### Controllers
