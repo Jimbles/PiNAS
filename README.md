@@ -33,11 +33,41 @@ Case is based on [this excellent case](https://www.thingiverse.com/thing:3723481
 
 ### Shutdown and game stream buttons
 
-Two push buttons and an indicator LED was added to easily shutdown the Pi and also to start Moonlight streaming. Add the following line to `rc.local` before the line `exit 0` to run at startup.
+Two push buttons and an indicator LED was added to easily shutdown the Pi and also to start Moonlight streaming. Many ways of starting program at boot detailed [here](https://learn.sparkfun.com/tutorials/how-to-run-a-raspberry-pi-program-on-startup/all) 
+
+#### Shutdown Button
+Doesnt need GUI and needs to run as root so add the following line to `rc.local` before the line `exit 0` to run at startup.
 
 `sudo /usr/bin/python3 /home/pi/PiNAS/code/shutdown.py &`
 
-Currently the Moonlight-qt button does not start properly, so it uses moonlight embedded. This requires using systemd to get GUI working and to run as pi user
+#### Moonlight Button
+
+Currently the Moonlight-qt button does not start properly, so it uses moonlight embedded (defaulting to Steam). This requires using systemd to get GUI working and to run as pi user (for configs etc.). Combination of the guide [here](https://learn.sparkfun.com/tutorials/how-to-run-a-raspberry-pi-program-on-startup/all) and [PiDocs](https://www.raspberrypi.org/documentation/linux/usage/systemd.md). Created service file `/etc/systemd/system/BTN.service` :
+
+```bash
+[Unit]
+Description=Get Button listening service running at boot
+
+[Service]
+Environment=DISPLAY=:0
+Environment=XAUTHORITY=/home/pi/.Xauthority
+ExecStart=/usr/bin/python3 /home/pi/PiNAS/code/moonlight.py
+Restart=always
+StandardOutput=inherit
+StandardError=inherit
+SyslogIdentifier=BTN
+User=pi
+Group=pi
+KillMode=process
+TimeoutSec=infinity
+
+[Install]
+WantedBy=graphical.target
+```
+
+
+
+
 
 ## Software Setup
 
@@ -59,7 +89,7 @@ The are many steps to this! I have included the ones I can remember and what gui
 - Add SAMBA share [1](https://magpi.raspberrypi.org/articles/raspberry-pi-samba-file-server) [2](https://www.raspberrypi.org/documentation/remote-access/samba.md) ADD UFW RULE. Needed to add smb client in windows 10
 - DLNA player [1](https://pimylifeup.com/raspberrypi-minidlna/) [2](https://www.raspberrypi.org/forums/viewtopic.php?t=251651) ADD UFW RULE! Added reference to `poster.jpg` and `fanart.jpg` in album art as thats what Sonarr and Radarr use
 - `ncdu` for checking folder size
-- On laptop added music folder as samba network drive. Fine to use but indexing was slow
+- On laptop added music folder as samba network drive. Fine to use but indexing was slow in Foobar
 
 ### Torrents
 
